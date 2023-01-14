@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body>
+
+    {%- include header.html -%}
+
+    <main class="page-content" aria-label="Content">
+
+    {% if page.layout == "home" %}
+        <img src={% assign image_files = site.static_files | where: "image", true %}
+            {% for myimage in image_files %}
+                {% if myimage.name == site.landing_image_name %}
+                    {{ myimage.path }}
+                {% endif %}
+            {% endfor %} 
+        alt="Image of Arches" style="width:2400px;height:600px;">
+    {% endif %}
+
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+
+    {%- include footer.html -%}
+
+  </body>
+
+</html>
